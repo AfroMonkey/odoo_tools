@@ -1,7 +1,7 @@
 #!/bin/bash
 VERSION=13.0
 
-REPO_DIR=/opt/odoo
+HOME_DIR=/opt/odoo
 CONFIG_PATH=/etc/odoo.conf
 CONFIG_URL=https://raw.githubusercontent.com/AfroMonkey/odoo_tools/$VERSION/odoo.conf
 DAEMON_URL=https://raw.githubusercontent.com/AfroMonkey/odoo_tools/$VERSION/odoo
@@ -20,8 +20,7 @@ apt-get update -y && apt-get upgrade -y && \
     postgresql \
     wget
 
-useradd -m odoo && \
-usermod -aG sudo odoo
+adduser --system --home=$HOME_DIR odoo
 
 su postgres - c "service postgresql start && \
     createuser -dRS odoo && \
@@ -48,9 +47,9 @@ pip3 install \
     pbr \
     funcsigs
 
-su odoo -c "git clone https://github.com/odoo/odoo/ --single-branch -b $VERSION $REPO_DIR"
+su odoo -c "git clone https://github.com/odoo/odoo/ --single-branch -b $VERSION $HOME_DIR/odoo"
 
-su odoo -c "pip3 install -U -r $REPO_DIR/requirements.txt"
+su odoo -c "pip3 install -U -r $HOME_DIR/odoo/requirements.txt"
 
 wget https://github.com/wkhtmltopdf/wkhtmltopdf/releases/download/0.12.5/wkhtmltox_0.12.5-1.bionic_amd64.deb && \
     sudo dpkg -i wkhtmltox_0.12.5-1.bionic_amd64.deb || \
