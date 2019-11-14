@@ -1,10 +1,10 @@
 #!/bin/bash
-VERSION = 13.0
+VERSION=13.0
 
-REPO_DIR = /opt/odoo
-CONFIG_PATH = /etc/odoo.conf
-CONFIG_URL = https://raw.githubusercontent.com/AfroMonkey/odoo_tools/$VERSION/odoo.conf
-DAEMON_URL = https://raw.githubusercontent.com/AfroMonkey/odoo_tools/$VERSION/odoo
+REPO_DIR=/opt/odoo
+CONFIG_PATH=/etc/odoo.conf
+CONFIG_URL=https://raw.githubusercontent.com/AfroMonkey/odoo_tools/$VERSION/odoo.conf
+DAEMON_URL=https://raw.githubusercontent.com/AfroMonkey/odoo_tools/$VERSION/odoo
 
 DEBIAN_FRONTEND=noninteractive
 
