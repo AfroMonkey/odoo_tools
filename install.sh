@@ -28,9 +28,8 @@ apt-get update -y && apt-get upgrade -y && \
 
 adduser --system --home=$HOME_DIR odoo
 
-su postgres - c "service postgresql start && \
-    createuser -dRS odoo && \
-    service postgresql stop"
+service postgresql start && \
+su postgres - c "createuser -dRS odoo"
 
 
 apt-get install -y \
