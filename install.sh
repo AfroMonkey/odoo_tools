@@ -8,6 +8,12 @@ DAEMON_URL=https://raw.githubusercontent.com/AfroMonkey/odoo_tools/$VERSION/odoo
 
 DEBIAN_FRONTEND=noninteractive
 
+apt-get update && \
+wget https://github.com/wkhtmltopdf/wkhtmltopdf/releases/download/0.12.5/wkhtmltox_0.12.5-1.bionic_amd64.deb && \
+    sudo dpkg -i wkhtmltox_0.12.5-1.bionic_amd64.deb || \
+    sudo apt-get install -f -y
+
+set -e
 
 apt-get update -y && apt-get upgrade -y && \
     apt-get install -y \
@@ -50,10 +56,6 @@ pip3 install \
 su odoo -c "git clone https://github.com/odoo/odoo/ --single-branch -b $VERSION $HOME_DIR/odoo"
 
 su odoo -c "pip3 install -U -r $HOME_DIR/odoo/requirements.txt"
-
-wget https://github.com/wkhtmltopdf/wkhtmltopdf/releases/download/0.12.5/wkhtmltox_0.12.5-1.bionic_amd64.deb && \
-    sudo dpkg -i wkhtmltox_0.12.5-1.bionic_amd64.deb || \
-    sudo apt-get install -f -y
 
 curl $CONFIG_URL > /etc/odoo.conf
 
